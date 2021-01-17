@@ -131,7 +131,7 @@ def processCmd(cmd, conn):
         
         for i in cmd[1:-1]:
             if i not in groups:
-                conn.send("Error: Group not found".encode(constants.FORMAT))
+                conn.send("Error: Group(s) not found".encode(constants.FORMAT))
                 return
 
         conn.send("Sending...".encode(constants.FORMAT))
