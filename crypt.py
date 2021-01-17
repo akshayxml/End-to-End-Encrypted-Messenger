@@ -1,24 +1,35 @@
+from Crypto.Util.Padding import pad, unpad
 from Crypto.Cipher import DES3
 import hashlib
 import random
 import constants
 
-def pad(text):
-    return text + (b' ' * (len(text) % 8))
-
 def desEncrypt(text, key):
+    # text needs to be in bytes
+    if(len(key) > 24):
+        key = key[-24:]
+
     try:
         des = DES3.new(key, DES3.MODE_ECB)
     except Exception as e:
         print("Error: " + str(e))
         return
 
-    padded_text = pad(text)
-    encrypted_text = des.encrypt(padded_text)
+    encrypted_text = des.encrypt(pad(text, 8))
+    # encrypted text will be in bytes
     return encrypted_text
 
 def desDecrypt(cipher, key):
-    des = DES3.new(key, DES3.MODE_ECB)
+    # cipher needs to be in bytes
+    if(len(key) > 24):
+        key = key[-24:]
+
+    try:
+        des = DES3.new(key, DES3.MODE_ECB)
+    except Exception as e:
+        print("Error: " + str(e))
+        return
+
     return des.decrypt(cipher)
 
 def sha(text):

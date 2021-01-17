@@ -17,7 +17,7 @@
 
         P2P key exchange
 
-        MAX_RAND = 1<<128
+        MAX_RAND = 1<<128 
         roll1 = 2020201023
         roll2 = 2030104024
         g = constants.DIFFIE_GENERATOR
