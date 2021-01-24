@@ -1,0 +1,40 @@
+***Diffie Hellman***
+        Both the persons will agree upon the public keys G and P (where P = prime)
+        P = 23
+        G = 9
+        # Alice will choose the private key a 
+        a = 4
+        # gets the generated key
+        x = diffie(G,a,P)  
+        # Bob will choose the private key b
+        b = 3
+        # gets the generated key
+        y = diffie(G,b,P)
+        # Secret key for Alice 
+        ka = diffie(y,a,P)
+        # Secret key for Bob 
+        kb = diffie(x,b,P)
+
+        P2P key exchange
+
+        MAX_RAND = 1<<128 
+        roll1 = 2020201023
+        roll2 = 2030104024
+        g = constants.DIFFIE_GENERATOR
+        p = constants.DIFFIE_PRIME
+
+        AliceKeyHex = sha(str(random.randint(0, MAX_RAND)+ roll1).encode())
+        BobKeyHex = sha(str(random.randint(0, MAX_RAND)+ roll2).encode())
+
+        AliceKey = int(AliceKeyHex, 16)
+        BobKey = int(BobKeyHex, 16)
+
+        AliceSend = diffie(g, AliceKey, p)
+        BobSend = diffie(g, BobKey, p)
+
+        AliceKey = diffie(BobSend, AliceKey, p)
+        BobKey = diffie(AliceSend, BobKey, p)
+
+        print(AliceKey)
+        print(BobKey)
+**********************
