@@ -23,8 +23,8 @@ The message is encrypted using Tripple DES (3DES) and the key will be Diffie–H
 exchanged between clients. Each group has one key (random nonce).
 ### How to run:
 - pip3 install pycryptodome
-- run server: ./server.py 127.0.0.1 18000
-- run client: ./client.py 8000
+- run server: ./server.py 
+- run client: ./client.py PORT
 
 
 
